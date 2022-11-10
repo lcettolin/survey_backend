@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface Survey_tableRepository extends JpaRepository<Survey_table, String> {
-    //Optional<Survey_table> findByMail(String id_mail);
+public interface Survey_tableRepository extends JpaRepository<Survey_table, Long> {
+    Optional<Survey_table> findById(long id_survey);
 
     Page<Survey_table> findAll(Pageable pageable);
 
