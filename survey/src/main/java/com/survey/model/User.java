@@ -3,6 +3,8 @@ package com.survey.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +19,12 @@ public class User {
     private String pass;
     @Column(name = "is_admin")
     private long isAdmin;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "submitted_survey",
+            joinColumns        = { @JoinColumn(name = "id_mail") },
+            inverseJoinColumns = { @JoinColumn(name = "id_survey") })
+    private List<Survey_table> surveys = new ArrayList<>();
 
     public User() {
 
@@ -46,6 +54,10 @@ public class User {
 
     public long getIsAdmin() {
         return isAdmin;
+    }
+
+    public List<Survey_table> getSurveys() {
+        return surveys;
     }
 
     public void setIsAdmin(long isAdmin) {
