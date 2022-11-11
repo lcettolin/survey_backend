@@ -41,13 +41,14 @@ public class Survey_table {
 
     public Survey_table(){ }
 
-    public Survey_table(String id_mail, String name, String description, String publish_date, String ending_date, Category category) {
+    public Survey_table(String id_mail, long id_category, String name, String description, String publish_date, String ending_date) {
         this.id_mail = id_mail;
         this.name = name;
         this.description = description;
         this.publish_date = publish_date;
         this.ending_date = ending_date;
-        this.category = category;
+        //this.category = category;
+        this.id_category = id_category;
     }
 
     public long getId() {

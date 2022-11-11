@@ -2,6 +2,7 @@ package com.survey.controller;
 
 import com.google.gson.Gson;
 import com.survey.model.Answer;
+import com.survey.model.Submitted_survey;
 import com.survey.model.User;
 import com.survey.repository.AnswerRepository;
 import com.survey.tool.SortCriteria;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -54,6 +56,20 @@ public class AnswerController {
 
             return new ResponseEntity<>(answers, HttpStatus.OK);
         } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping(
+            value = "/answer",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public ResponseEntity<Answer> createSubmitted_survey(@RequestBody Answer answer) {
+        try {
+            Answer newAnswer = repository.save(new Answer(answer.getAnswer() ));
+            return new ResponseEntity<>(newAnswer, HttpStatus.CREATED);
+        }
+        catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
