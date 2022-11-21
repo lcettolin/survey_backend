@@ -41,6 +41,13 @@ public class Question_answer {
     public long getId_answer() {
         return id_answer;
     }
+    public Question getQuestion(){
+        return question;
+    }
+    public Answer getAnswer(){
+        return answer;
+    }
+
 
     public void setId_question(long id_question) {
         this.id_question = id_question;

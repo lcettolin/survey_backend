@@ -48,6 +48,10 @@ public class Survey_composition {
     public void setId_question_answer(Long id_question_answer) {
         this.id_question_answer = id_question_answer;
     }
+
+    public Question_answer getQuestion_answer() {
+        return question_answer;
+    }
 }
 
 class SurveyPK implements Serializable {
